@@ -1,0 +1,103 @@
+/* Base parameters shared between both themes */
+:root {
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Cinzel', serif; /* Roman display typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif; /* Roman serif headings */
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. Theme Natural: Classical Roman (Warm Travertine, Alabaster, Antique Gold, Charcoal) */
+.theme-natural {
+  --bg-primary: #faf9f5;      /* Warm Travertine White */
+  --bg-secondary: #ffffff;    /* Alabaster Marble */
+  --bg-tertiary: #f3f0e8;     /* Aged Roman Stone */
+  --bg-glass: rgba(250, 249, 245, 0.8);
+  
+  --border-color: rgba(181, 148, 91, 0.28); /* Classic gold outline */
+  --border-focus: rgba(181, 148, 91, 0.65);
+  
+  --text-primary: #1c1a17;    /* Roman Charcoal */
+  --text-secondary: #59554f;  /* Soft Dark Gray */
+  --text-muted: #8c867a;
+  
+  /* Antique Gold Accents */
+  --accent-gold: #b5945b;     /* Roman Gold */
+  --accent-gold-hover: #9e7f4b;
+  --accent-gold-dark: #7a5e32;
+  --accent-blue: #38bdf8;
+  --accent-blue-soft: rgba(56, 189, 248, 0.05);
+  --accent-gold-soft: rgba(181, 148, 91, 0.1);
+  
+  /* Status Colors */
+  --status-pending: #d97706;
+  --status-approved: #059669;
+  --status-cancelled: #dc2626;
+  --status-process: #2563eb;
+  
+  /* Shadows & Glow */
+  --shadow-sm: 0 2px 8px rgba(181, 148, 91, 0.05);
+  --shadow-md: 0 8px 24px rgba(181, 148, 91, 0.1);
+  --shadow-lg: 0 16px 40px rgba(181, 148, 91, 0.15);
+  --shadow-gold: 0 0 15px rgba(181, 148, 91, 0.2);
+  --blur-glass: blur(12px);
+}
+
+/* 2. Theme Lab-Grown: Morning Glory (Sky/Ice White, Periwinkle Blue, Steel Slate) */
+.theme-labgrown {
+  --bg-primary: #f4f7fc;      /* Morning Glory Light Blue-White */
+  --bg-secondary: #ffffff;    /* Pure White Alabaster */
+  --bg-tertiary: #ebf0f8;     /* Soft Ice Blue */
+  --bg-glass: rgba(244, 247, 252, 0.8);
+  
+  --border-color: rgba(143, 174, 214, 0.35); /* Periwinkle/Platinum outline */
+  --border-focus: rgba(143, 174, 214, 0.7);
+  
+  --text-primary: #202b36;    /* Slate Dark Blue */
+  --text-secondary: #4b5866;  /* Steel Gray */
+  --text-muted: #7f8e9e;
+  
+  /* Morning Glory Periwinkle Accents */
+  --accent-gold: #8faed6;     /* Morning Glory Soft Blue */
+  --accent-gold-hover: #7492b8;
+  --accent-gold-dark: #587599;
+  --accent-blue: #38bdf8;
+  --accent-blue-soft: rgba(56, 189, 248, 0.05);
+  --accent-gold-soft: rgba(143, 174, 214, 0.1);
+  
+  /* Status Colors */
+  --status-pending: #d97706;
+  --status-approved: #059669;
+  --status-cancelled: #dc2626;
+  --status-process: #2563eb;
+  
+  /* Shadows & Glow */
+  --shadow-sm: 0 2px 8px rgba(143, 174, 214, 0.05);
+  --shadow-md: 0 8px 24px rgba(143, 174, 214, 0.1);
+  --shadow-lg: 0 16px 40px rgba(143, 174, 214, 0.15);
+  --shadow-gold: 0 0 15px rgba(143, 174, 214, 0.2);
+  --blur-glass: blur(12px);
+}
+
+/* Custom Scrollbar overrides */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
