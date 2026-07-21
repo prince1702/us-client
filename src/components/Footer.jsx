@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function Footer({ setActivePage }) {
   return (
-    <footer style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-color)', padding: '60px 0 30px' }}>
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: '40px', marginBottom: '40px' }}>
+    <footer className="site-footer">
+      <div className="container footer-grid">
         <div>
           <div className="logo display-title" style={{ fontSize: '1.2rem', marginBottom: '16px' }}>
             <span style={{ color: 'var(--accent-gold)' }}>MELEE</span> DIAMONDS
@@ -56,7 +56,7 @@ export default function Footer({ setActivePage }) {
         </div>
       </div>
 
-      <div className="container" style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+      <div className="container footer-bottom">
         <p>© 2026 Melee Diamonds Inc. All Rights Reserved.</p>
         <p>Enterprise Jewelry Platform Specification v1.0</p>
       </div>
