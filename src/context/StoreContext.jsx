@@ -68,7 +68,6 @@ export const StoreProvider = ({ children }) => {
     const normalizedUser = username.trim().toUpperCase();
     const normalizedPass = password.trim();
 
-    // Allow custom active password or 'admin' as universal fallback
     const isUsernameValid = normalizedUser === 'MELEE' || normalizedUser === 'ADMIN';
     const isPasswordValid = normalizedPass === adminPassword || normalizedPass === 'admin';
 
@@ -104,7 +103,7 @@ export const StoreProvider = ({ children }) => {
     setAttachedExcel(null);
   };
 
-  // Master product database
+  // Master product database enriched with full diamond attributes for precision filtering
   const [products] = useState([
     // --- JEWELRY ---
     // Rings
@@ -117,7 +116,26 @@ export const StoreProvider = ({ children }) => {
       price: 2450.00,
       image: mockImg('Aria Ring'),
       description: 'A stunning oval-cut lab-grown diamond surrounded by a delicate micro-pavé halo setting.',
-      specifications: { metal: '18K White Gold', averageColor: 'F', averageClarity: 'VS1', totalCarat: '1.50 ctw' }
+      specifications: { metal: '18K White Gold', averageColor: 'F', averageClarity: 'VS1', totalCarat: '1.50 ctw' },
+      details: {
+        shape: 'Oval',
+        carat: 1.50,
+        color: 'F',
+        clarity: 'VS1',
+        cut: 'Excellent',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'IGI',
+        depth: 62.1,
+        table: 57.0,
+        length: 8.50,
+        width: 6.20,
+        mmDepth: 3.85,
+        fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'United States'
+      }
     },
     {
       id: 'ring-2',
@@ -128,76 +146,362 @@ export const StoreProvider = ({ children }) => {
       price: 8900.00,
       image: mockImg('Crown Ring'),
       description: 'An exquisite natural diamond centered on an elegant, tapered four-prong setting of pure platinum.',
-      specifications: { metal: 'Platinum', averageColor: 'D', averageClarity: 'VVS2', totalCarat: '1.20 ctw' }
+      specifications: { metal: 'Platinum', averageColor: 'D', averageClarity: 'VVS2', totalCarat: '1.20 ctw' },
+      details: {
+        shape: 'Round',
+        carat: 1.20,
+        color: 'D',
+        clarity: 'VVS2',
+        cut: 'Ideal',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'GIA',
+        depth: 61.5,
+        table: 56.0,
+        length: 6.80,
+        width: 6.80,
+        mmDepth: 4.18,
+        fluorescence: 'Faint',
+        culet: 'None',
+        girdle: 'TN',
+        location: 'USA'
+      }
     },
+    {
+      id: 'ring-3',
+      sku: 'RING-LGD-003',
+      name: 'Emerald Cut Solitaire Ring',
+      category: 'Rings',
+      diamondType: 'Lab-Grown',
+      price: 3600.00,
+      image: mockImg('Emerald Ring'),
+      description: 'Sophisticated step-cut emerald lab-grown diamond in a minimalist 18K Yellow Gold bezel.',
+      specifications: { metal: '18K Yellow Gold', averageColor: 'E', averageClarity: 'VVS1', totalCarat: '2.00 ctw' },
+      details: {
+        shape: 'Emerald',
+        carat: 2.00,
+        color: 'E',
+        clarity: 'VVS1',
+        cut: 'Ideal',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'IGI',
+        depth: 65.0,
+        table: 61.0,
+        length: 8.90,
+        width: 6.10,
+        mmDepth: 3.96,
+        fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'Canada'
+      }
+    },
+    {
+      id: 'ring-4',
+      sku: 'RING-NAT-004',
+      name: 'Princess Cut Vintage Ring',
+      category: 'Rings',
+      diamondType: 'Natural',
+      price: 11200.00,
+      image: mockImg('Princess Ring'),
+      description: 'Brilliant princess cut natural diamond framed by intricate hand-engraved platinum vintage filigree.',
+      specifications: { metal: 'Platinum', averageColor: 'E', averageClarity: 'VVS2', totalCarat: '1.80 ctw' },
+      details: {
+        shape: 'Princess',
+        carat: 1.80,
+        color: 'E',
+        clarity: 'VVS2',
+        cut: 'Ideal',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'GIA',
+        depth: 71.0,
+        table: 69.0,
+        length: 6.70,
+        width: 6.70,
+        mmDepth: 4.75,
+        fluorescence: 'Medium',
+        culet: 'Pointed',
+        girdle: 'STK',
+        location: 'India'
+      }
+    },
+    {
+      id: 'ring-5',
+      sku: 'RING-LGD-005',
+      name: 'Radiant Cut Split-Shank Ring',
+      category: 'Rings',
+      diamondType: 'Lab-Grown',
+      price: 4800.00,
+      image: mockImg('Radiant Ring'),
+      description: 'Fiery radiant cut center lab-grown diamond flanked by split-shank diamond pavé.',
+      specifications: { metal: '18K White Gold', averageColor: 'D', averageClarity: 'VS1', totalCarat: '2.50 ctw' },
+      details: {
+        shape: 'Radiant',
+        carat: 2.50,
+        color: 'D',
+        clarity: 'VS1',
+        cut: 'Excellent',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'GCAL',
+        depth: 67.0,
+        table: 64.0,
+        length: 8.80,
+        width: 6.90,
+        mmDepth: 4.62,
+        fluorescence: 'Strong',
+        culet: 'None',
+        girdle: 'TK',
+        location: 'Hong Kong'
+      }
+    },
+    {
+      id: 'ring-6',
+      sku: 'RING-NAT-006',
+      name: 'Cushion Cut Royal Halo Ring',
+      category: 'Rings',
+      diamondType: 'Natural',
+      price: 15400.00,
+      image: mockImg('Cushion Ring'),
+      description: 'Soft cushion cut natural diamond with double pavé halo setting in 18K Rose Gold.',
+      specifications: { metal: '14K Rose Gold', averageColor: 'F', averageClarity: 'VVS1', totalCarat: '2.20 ctw' },
+      details: {
+        shape: 'Cushion',
+        carat: 2.20,
+        color: 'F',
+        clarity: 'VVS1',
+        cut: 'Excellent',
+        polish: 'Excellent',
+        symmetry: 'Very Good',
+        lab: 'GIA',
+        depth: 66.5,
+        table: 62.0,
+        length: 7.60,
+        width: 7.40,
+        mmDepth: 4.92,
+        fluorescence: 'None',
+        culet: 'VS',
+        girdle: 'M',
+        location: 'United States'
+      }
+    },
+    {
+      id: 'ring-7',
+      sku: 'RING-LGD-007',
+      name: 'Pear Cut Solitaire Pendant Ring',
+      category: 'Rings',
+      diamondType: 'Lab-Grown',
+      price: 2900.00,
+      image: mockImg('Pear Ring'),
+      description: 'Graceful tear-drop pear shape lab-grown diamond set on a polished delicate platinum band.',
+      specifications: { metal: 'Platinum', averageColor: 'G', averageClarity: 'VS2', totalCarat: '1.70 ctw' },
+      details: {
+        shape: 'Pear',
+        carat: 1.70,
+        color: 'G',
+        clarity: 'VS2',
+        cut: 'Very Good',
+        polish: 'Excellent',
+        symmetry: 'Very Good',
+        lab: 'IGI',
+        depth: 63.2,
+        table: 58.5,
+        length: 9.80,
+        width: 6.10,
+        mmDepth: 3.85,
+        fluorescence: 'SL',
+        culet: 'None',
+        girdle: 'STN',
+        location: 'India'
+      }
+    },
+
     // Earrings
     {
       id: 'earring-1',
       sku: 'EAR-LGD-001',
-      name: 'Celestial Diamond Studs',
+      name: 'Celestial Round Diamond Studs',
       category: 'Earrings',
       diamondType: 'Lab-Grown',
       price: 1800.00,
       image: earringImg(),
       description: 'Classic round brilliant studs crafted with lab-grown diamonds, offering maximum fire and scintillation.',
-      specifications: { metal: '14K White Gold', averageColor: 'E', averageClarity: 'VS2', totalCarat: '2.00 ctw' }
+      specifications: { metal: '14K White Gold', averageColor: 'E', averageClarity: 'VS2', totalCarat: '2.00 ctw' },
+      details: {
+        shape: 'Round',
+        carat: 2.00,
+        color: 'E',
+        clarity: 'VS2',
+        cut: 'Ideal',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'IGI',
+        depth: 61.8,
+        table: 57.0,
+        length: 8.10,
+        width: 8.10,
+        mmDepth: 5.00,
+        fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'USA'
+      }
     },
     {
       id: 'earring-2',
       sku: 'EAR-NAT-002',
-      name: 'Royal Heritage Drop Earrings',
+      name: 'Royal Heritage Pear Drop Earrings',
       category: 'Earrings',
       diamondType: 'Natural',
       price: 14500.00,
       image: earringImg(),
       description: 'Art-deco inspired natural diamond drop earrings with matching pear and marquise shaped diamonds.',
-      specifications: { metal: 'Platinum', averageColor: 'F', averageClarity: 'VS1', totalCarat: '3.50 ctw' }
+      specifications: { metal: 'Platinum', averageColor: 'F', averageClarity: 'VS1', totalCarat: '3.50 ctw' },
+      details: {
+        shape: 'Pear',
+        carat: 3.50,
+        color: 'F',
+        clarity: 'VS1',
+        cut: 'Excellent',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'GIA',
+        depth: 64.0,
+        table: 59.0,
+        length: 12.00,
+        width: 7.50,
+        mmDepth: 4.80,
+        fluorescence: 'Faint',
+        culet: 'None',
+        girdle: 'TK',
+        location: 'Hong Kong'
+      }
     },
+
     // Bracelets
     {
       id: 'bracelet-1',
       sku: 'BRAC-LGD-001',
-      name: 'Eternity Tennis Bracelet',
+      name: 'Eternity Round Tennis Bracelet',
       category: 'Bracelets',
       diamondType: 'Lab-Grown',
       price: 5200.00,
       image: braceletImg(),
       description: 'A classic line design featuring perfectly matched round lab-grown diamonds, set in 18K Yellow Gold.',
-      specifications: { metal: '18K Yellow Gold', averageColor: 'F', averageClarity: 'VS1', totalCarat: '5.00 ctw' }
+      specifications: { metal: '18K Yellow Gold', averageColor: 'F', averageClarity: 'VS1', totalCarat: '5.00 ctw' },
+      details: {
+        shape: 'Round',
+        carat: 5.00,
+        color: 'F',
+        clarity: 'VS1',
+        cut: 'Excellent',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'IGI',
+        depth: 61.9,
+        table: 57.5,
+        length: 3.00,
+        width: 3.00,
+        mmDepth: 1.85,
+        fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'United States'
+      }
     },
     {
       id: 'bracelet-2',
       sku: 'BRAC-NAT-002',
-      name: 'Duchess Marquise Cuff',
+      name: 'Duchess Emerald Cut Cuff',
       category: 'Bracelets',
       diamondType: 'Natural',
       price: 28000.00,
       image: braceletImg(),
-      description: 'An elite natural diamond statement cuff featuring interlocking marquise-cut stones of unparalleled brilliance.',
-      specifications: { metal: 'Platinum', averageColor: 'D', averageClarity: 'VVS1', totalCarat: '10.50 ctw' }
+      description: 'An elite natural diamond statement cuff featuring interlocking emerald-cut stones of unparalleled brilliance.',
+      specifications: { metal: 'Platinum', averageColor: 'D', averageClarity: 'VVS1', totalCarat: '10.50 ctw' },
+      details: {
+        shape: 'Emerald',
+        carat: 10.50,
+        color: 'D',
+        clarity: 'VVS1',
+        cut: 'Ideal',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'GIA',
+        depth: 65.5,
+        table: 60.0,
+        length: 6.00,
+        width: 4.00,
+        mmDepth: 2.60,
+        fluorescence: 'None',
+        culet: 'Long',
+        girdle: 'M',
+        location: 'USA'
+      }
     },
+
     // Necklaces
     {
       id: 'neck-1',
       sku: 'NECK-LGD-001',
-      name: 'Cascade Cluster Necklace',
+      name: 'Cascade Oval Cluster Necklace',
       category: 'Necklaces',
       diamondType: 'Lab-Grown',
       price: 3950.00,
       image: pendantImg(),
-      description: 'A modern design cluster representing cascading dew drops of bright, lab-grown diamonds.',
-      specifications: { metal: '18K White Gold', averageColor: 'F', averageClarity: 'VS1', totalCarat: '2.80 ctw' }
+      description: 'A modern design cluster representing cascading dew drops of bright oval lab-grown diamonds.',
+      specifications: { metal: '18K White Gold', averageColor: 'F', averageClarity: 'VS1', totalCarat: '2.80 ctw' },
+      details: {
+        shape: 'Oval',
+        carat: 2.80,
+        color: 'F',
+        clarity: 'VS1',
+        cut: 'Excellent',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'GCAL',
+        depth: 62.5,
+        table: 58.0,
+        length: 9.00,
+        width: 6.50,
+        mmDepth: 4.06,
+        fluorescence: 'None',
+        culet: 'None',
+        girdle: 'STK',
+        location: 'Canada'
+      }
     },
     {
       id: 'neck-2',
       sku: 'NECK-NAT-002',
-      name: 'Empress Solitaire Necklace',
+      name: 'Empress Solitaire Pendant Necklace',
       category: 'Necklaces',
       diamondType: 'Natural',
       price: 18500.00,
       image: pendantImg(),
       description: 'A timeless investment piece: a magnificent 2.0ct GIA certified natural round brilliant diamond on a platinum chain.',
-      specifications: { metal: 'Platinum', averageColor: 'E', averageClarity: 'VVS2', totalCarat: '2.00 ctw' }
+      specifications: { metal: 'Platinum', averageColor: 'E', averageClarity: 'VVS2', totalCarat: '2.00 ctw' },
+      details: {
+        shape: 'Round',
+        carat: 2.00,
+        color: 'E',
+        clarity: 'VVS2',
+        cut: 'Ideal',
+        polish: 'Excellent',
+        symmetry: 'Excellent',
+        lab: 'GIA',
+        depth: 61.2,
+        table: 56.5,
+        length: 8.10,
+        width: 8.10,
+        mmDepth: 4.95,
+        fluorescence: 'Faint',
+        culet: 'None',
+        girdle: 'M',
+        location: 'United States'
+      }
     },
 
     // --- CERTIFIED LOOSE DIAMONDS ---
@@ -218,13 +522,17 @@ export const StoreProvider = ({ children }) => {
         polish: 'Excellent',
         symmetry: 'Excellent',
         fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'USA',
         lab: 'IGI',
         certificateNumber: 'IGI-4829103',
         depth: 61.2,
         table: 57.0,
         ratio: 1.01,
         length: 8.12,
-        width: 8.08
+        width: 8.08,
+        mmDepth: 4.97
       }
     },
     {
@@ -244,13 +552,17 @@ export const StoreProvider = ({ children }) => {
         polish: 'Excellent',
         symmetry: 'Excellent',
         fluorescence: 'Faint',
+        culet: 'None',
+        girdle: 'TN',
+        location: 'Hong Kong',
         lab: 'GIA',
         certificateNumber: 'GIA-22083918',
         depth: 62.8,
         table: 56.5,
         ratio: 1.45,
         length: 9.15,
-        width: 6.31
+        width: 6.31,
+        mmDepth: 3.96
       }
     },
     {
@@ -270,13 +582,17 @@ export const StoreProvider = ({ children }) => {
         polish: 'Excellent',
         symmetry: 'Very Good',
         fluorescence: 'None',
+        culet: 'VS',
+        girdle: 'M',
+        location: 'India',
         lab: 'IGI',
         certificateNumber: 'IGI-82910398',
         depth: 64.1,
         table: 58.0,
         ratio: 1.05,
         length: 8.90,
-        width: 8.48
+        width: 8.48,
+        mmDepth: 5.43
       }
     },
     {
@@ -296,13 +612,17 @@ export const StoreProvider = ({ children }) => {
         polish: 'Excellent',
         symmetry: 'Excellent',
         fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'United States',
         lab: 'GIA',
         certificateNumber: 'GIA-6391028',
         depth: 61.8,
         table: 56.0,
         ratio: 1.00,
         length: 8.10,
-        width: 8.12
+        width: 8.12,
+        mmDepth: 5.01
       }
     },
 
@@ -313,7 +633,7 @@ export const StoreProvider = ({ children }) => {
       name: 'Round Melee Pointers 0.02ct',
       category: 'Melee Diamonds',
       diamondType: 'Lab-Grown',
-      price: 420.00, // Price per carat
+      price: 420.00,
       image: looseDiamondImg(),
       details: {
         shape: 'Round',
@@ -326,6 +646,9 @@ export const StoreProvider = ({ children }) => {
         polish: 'Excellent',
         symmetry: 'Excellent',
         fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'India',
         availability: 'In Stock'
       }
     },
@@ -335,7 +658,7 @@ export const StoreProvider = ({ children }) => {
       name: 'Round Melee Pointers 0.05ct',
       category: 'Melee Diamonds',
       diamondType: 'Natural',
-      price: 890.00, // Price per carat
+      price: 890.00,
       image: looseDiamondImg(),
       details: {
         shape: 'Round',
@@ -348,6 +671,9 @@ export const StoreProvider = ({ children }) => {
         polish: 'Excellent',
         symmetry: 'Excellent',
         fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'Hong Kong',
         availability: 'In Stock'
       }
     },
@@ -367,6 +693,10 @@ export const StoreProvider = ({ children }) => {
         stoneCount: 2,
         mmSize: '6.0 x 4.0mm',
         carat: 0.80,
+        fluorescence: 'None',
+        culet: 'None',
+        girdle: 'M',
+        location: 'Canada',
         availability: 'In Stock'
       }
     },
@@ -384,6 +714,10 @@ export const StoreProvider = ({ children }) => {
         stoneCount: 5,
         mmSize: '5.0 x 3.5mm',
         carat: 2.25,
+        fluorescence: 'None',
+        culet: 'Long',
+        girdle: 'M',
+        location: 'USA',
         availability: 'In Stock'
       }
     }

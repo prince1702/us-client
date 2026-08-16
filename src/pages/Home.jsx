@@ -13,151 +13,151 @@ export default function Home({ setActivePage, setQuickViewProduct, setSelectedPr
 
   return (
     <div className="animate-fade-in">
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="container hero-grid">
-          {/* Left Column: Text & Controls */}
-          <div className="hero-content">
-            <span className="hero-tag">ESTABLISHED MCMLXXXIV • ROME</span>
-            <h1 className="hero-title">
-              Crafting <span className="gold-gradient-text">Brilliance</span><br />
-              Beyond Measure
+      {/* Full-width Professional Hero Banner Section with Pinned Navbar effect */}
+      <section className="hero-banner-section">
+        <div className="hero-banner-bg" style={{ backgroundImage: `url('/hero_banner.png')` }}>
+          <div className="hero-overlay-gradient"></div>
+        </div>
+
+        <div className="container hero-banner-container">
+          <div className="hero-banner-content">
+            {/* Top Accent Gold Bar */}
+            <div className="hero-gold-accent-line"></div>
+            
+            <h1 className="hero-banner-title">
+              Premium {diamondType} Diamonds & Fine Jewelry for <span className="gold-text-highlight">Wholesale Professionals</span>
             </h1>
             
-            {/* Diamond Ecosystem Toggle */}
-            <div className="hero-ecosystem-toggle">
-              <span className="toggle-label">Ecosystem Class:</span>
-              <div className="toggle-buttons-wrapper">
-                <button
-                  className={`toggle-btn ${diamondType === 'Natural' ? 'active' : ''}`}
-                  onClick={() => setDiamondType('Natural')}
-                >
-                  ✦ Natural Travertine
-                </button>
-                <button
-                  className={`toggle-btn ${diamondType === 'Lab-Grown' ? 'active' : ''}`}
-                  onClick={() => setDiamondType('Lab-Grown')}
-                >
-                  ✧ Lab-Grown Sky
-                </button>
-              </div>
+            <p className="hero-banner-subtitle">
+              Trusted wholesale supplier of fine jewelry, certified diamonds, melee diamonds & fancy layout diamonds. Serving jewelers, retailers, and manufacturers worldwide.
+            </p>
+
+            <div className="hero-banner-actions">
+              <button className="btn btn-hero-primary" onClick={() => setActivePage('jewelry')}>
+                Explore Jewelry Catalog
+              </button>
+              <button className="btn btn-hero-secondary" onClick={() => setActivePage('certified')}>
+                Search Certified Stones
+              </button>
+              <button className="btn btn-hero-outline" onClick={() => setActivePage('custom-inquiry')}>
+                Custom CAD Inquiry
+              </button>
             </div>
 
-            <p className="hero-desc">
-              Discover our elite collection of GIA & IGI certified {diamondType.toLowerCase()} diamonds, matching melee parcels, and custom mounting services engineered for B2B wholesalers and discerning B2C buyers.
-            </p>
-            
-            <div style={{ display: 'flex', gap: '16px' }}>
-              <button className="btn btn-primary" onClick={() => setActivePage('jewelry')}>
-                View Catalog
+            {/* Quick Ecosystem Switcher Badge */}
+            <div className="hero-eco-badge">
+              <span className="eco-badge-label">Active Collection:</span>
+              <button 
+                className={`eco-badge-btn ${diamondType === 'Natural' ? 'active' : ''}`}
+                onClick={() => setDiamondType('Natural')}
+              >
+                ✦ Natural Diamonds
               </button>
-              <button className="btn btn-secondary" onClick={() => setActivePage('custom-inquiry')}>
-                Design Custom Piece
+              <button 
+                className={`eco-badge-btn ${diamondType === 'Lab-Grown' ? 'active' : ''}`}
+                onClick={() => setDiamondType('Lab-Grown')}
+              >
+                ✧ Lab-Grown Diamonds
               </button>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Right Column: Floating Vault Showcase Card */}
-          <div className="hero-visual">
-            <div className="vault-showcase-card">
-              <div className="glass-card-header">
-                <span className="security-status">● VAULT ACTIVE</span>
-                <span className="laser-id">Laser ID: MELEE-2026-X</span>
+      {/* Trust Badges Strip */}
+      <section className="trust-badges-strip">
+        <div className="container">
+          <div className="trust-badges-grid">
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon">🔬</div>
+              <div className="trust-badge-text">
+                <strong>GIA & IGI Certified</strong>
+                <span>100% Verified Laser Inscription</span>
               </div>
-              
-              <div className="diamond-glow-container">
-                <div className="glowing-orb"></div>
-                <span className="showcase-diamond-icon">💎</span>
+            </div>
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon">💎</div>
+              <div className="trust-badge-text">
+                <strong>Precision Calibrated</strong>
+                <span>Consistent Sieve & Color Matching</span>
               </div>
-
-              <div className="spec-grid">
-                <div className="spec-box">
-                  <div className="spec-lbl">CARAT WEIGHT</div>
-                  <div className="spec-val">2.45 ct</div>
-                </div>
-                <div className="spec-box">
-                  <div className="spec-lbl">COLOR / CLARITY</div>
-                  <div className="spec-val">D / VVS1</div>
-                </div>
-                <div className="spec-box">
-                  <div className="spec-lbl">CUT GRADE</div>
-                  <div className="spec-val">EXCELLENT</div>
-                </div>
-                <div className="spec-box">
-                  <div className="spec-lbl">LAB CERTIFIED</div>
-                  <div className="spec-val">IGI VERIFIED</div>
-                </div>
+            </div>
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon">🛡️</div>
+              <div className="trust-badge-text">
+                <strong>Bank Escrow Assurance</strong>
+                <span>Secure Wire & Courier Coverage</span>
               </div>
-
-              <div className="price-tag-wrapper">
-                <span style={{ fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '1px', textTransform: 'uppercase' }}>ESTIMATED VALUATION</span>
-                <div className="valuation-price">
-                  {diamondType === 'Natural' ? '$18,400 USD' : '$4,250 USD'}
-                </div>
+            </div>
+            <div className="trust-badge-item">
+              <div className="trust-badge-icon">✈️</div>
+              <div className="trust-badge-text">
+                <strong>Worldwide Insured Shipping</strong>
+                <span>Door-to-door armored escort</span>
               </div>
-
-              <button className="btn btn-primary" style={{ width: '100%', padding: '10px', fontSize: '0.7rem' }} onClick={() => setActivePage('certified')}>
-                Inspect Specifications
-              </button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Categories Showcase */}
-      <section className="section" style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)' }}>
+      <section className="section portfolio-section">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Curated Modules</span>
-            <h2 className="display-title section-title">Explore Our Portfolios</h2>
+            <span className="section-subtitle">Curated B2B Portfolios</span>
+            <h2 className="section-title">Explore Wholesale Categories</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
+          <div className="categories-card-grid">
             {/* Fine Jewelry */}
-            <div className="card" style={{ padding: '32px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setActivePage('jewelry')}>
-              <div style={{ fontSize: '2.5rem', color: 'var(--accent-gold)', marginBottom: '16px' }}>💍</div>
-              <h3 className="display-title" style={{ fontSize: '1rem', marginBottom: '12px' }}>Fine Jewelry</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                Hand-set rings, earrings, pendants, and tennis bracelets in 18K and Platinum.
+            <div className="portfolio-card" onClick={() => setActivePage('jewelry')}>
+              <div className="portfolio-icon">💍</div>
+              <h3 className="portfolio-title">Fine Jewelry</h3>
+              <p className="portfolio-desc">
+                Hand-set rings, earrings, pendants, and eternity bracelets crafted in 18K Gold and Platinum.
               </p>
+              <span className="portfolio-link">Browse Collection →</span>
             </div>
 
             {/* Melee Diamonds */}
-            <div className="card" style={{ padding: '32px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setActivePage('melee')}>
-              <div style={{ fontSize: '2.5rem', color: 'var(--accent-gold)', marginBottom: '16px' }}>💎</div>
-              <h3 className="display-title" style={{ fontSize: '1rem', marginBottom: '12px' }}>Melee Diamonds</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                Round and fancy shape melee pointers sorted by MM size, carat weight, and sieve ranges.
+            <div className="portfolio-card" onClick={() => setActivePage('melee')}>
+              <div className="portfolio-icon">💎</div>
+              <h3 className="portfolio-title">Melee Diamonds</h3>
+              <p className="portfolio-desc">
+                Round & fancy cut pointers sorted by MM size, carat weight, color, and sieve clarity ranges.
               </p>
+              <span className="portfolio-link">View Melee Parcels →</span>
             </div>
 
             {/* Layouts */}
-            <div className="card" style={{ padding: '32px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setActivePage('layouts')}>
-              <div style={{ fontSize: '2.5rem', color: 'var(--accent-gold)', marginBottom: '16px' }}>⚜️</div>
-              <h3 className="display-title" style={{ fontSize: '1rem', marginBottom: '12px' }}>Matched Layouts</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                Pre-selected matched stones for tennis necklaces, cuffs, eternity bands, and side stone pairs.
+            <div className="portfolio-card" onClick={() => setActivePage('layouts')}>
+              <div className="portfolio-icon">⚜️</div>
+              <h3 className="portfolio-title">Matched Layouts</h3>
+              <p className="portfolio-desc">
+                Calibrated multi-stone layouts for tennis necklaces, cuffs, eternity bands, and side stone pairs.
               </p>
+              <span className="portfolio-link">Explore Layouts →</span>
             </div>
 
             {/* Certified Diamonds */}
-            <div className="card" style={{ padding: '32px', textAlign: 'center', cursor: 'pointer' }} onClick={() => setActivePage('certified')}>
-              <div style={{ fontSize: '2.5rem', color: 'var(--accent-gold)', marginBottom: '16px' }}>🔬</div>
-              <h3 className="display-title" style={{ fontSize: '1rem', marginBottom: '12px' }}>Certified Diamonds</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                Advanced search engine to filter and compare GIA & IGI certified single loose stones.
+            <div className="portfolio-card" onClick={() => setActivePage('certified')}>
+              <div className="portfolio-icon">🔬</div>
+              <h3 className="portfolio-title">Certified Loose Diamonds</h3>
+              <p className="portfolio-desc">
+                GIA & IGI certified loose single stones with 3D 360° video scans and certificate verification.
               </p>
+              <span className="portfolio-link">Search Database →</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Featured Products */}
-      <section className="section">
+      <section className="section featured-section">
         <div className="container">
           <div className="section-header">
-            <span className="section-subtitle">Exquisite Creations</span>
-            <h2 className="display-title section-title">Featured {diamondType} Jewelry</h2>
+            <span className="section-subtitle">Exquisite Craftsmanship</span>
+            <h2 className="section-title">Featured {diamondType} Creations</h2>
           </div>
 
           <div className="products-grid">
@@ -176,27 +176,53 @@ export default function Home({ setActivePage, setQuickViewProduct, setSelectedPr
         </div>
       </section>
 
-      <section className="section" style={{ background: 'radial-gradient(circle at center, var(--bg-tertiary) 0%, var(--bg-primary) 100%)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
+      {/* Custom Design CTA Section */}
+      <section className="section custom-cta-section">
         <div className="container responsive-grid-half" style={{ alignItems: 'center' }}>
           <div>
-            <span className="section-subtitle">Bespoke Custom Workshop</span>
-            <h2 className="display-title" style={{ fontSize: '2.4rem', marginBottom: '24px', lineHeight: '1.2' }}>
-              Bring Your Dream Jewelry to Life
+            <span className="section-subtitle" style={{ textAlign: 'left' }}>Bespoke Manufacturing Laboratory</span>
+            <h2 className="custom-cta-title">
+              Engineered CAD Custom Manufacturing
             </h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', fontSize: '1rem' }}>
-              Our design laboratory works with master CAD modelers, metal smiths, and setters to bring your exact custom ideas to life. Submit your reference photos, select target budgets, and receive premium quotations and 3D renders from our team.
+            <p className="custom-cta-desc">
+              Our master CAD modelers and setters craft custom mountings to exact millimeter tolerances. Submit reference sketches, target diamond parameters, and receive 3D CAD renders and wholesale quotes within 24 hours.
             </p>
-            <button className="btn btn-primary" onClick={() => setActivePage('custom-inquiry')}>
-              Initiate Custom Design
+            <button className="btn btn-hero-primary" onClick={() => setActivePage('custom-inquiry')}>
+              Initiate Custom CAD Inquiry
             </button>
           </div>
-          <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '12px', padding: '32px', textAlign: 'center', boxShadow: 'var(--shadow-lg)' }}>
-            <h3 className="display-title" style={{ fontSize: '1rem', color: 'var(--accent-gold)', marginBottom: '20px' }}>Inquiry Workflow</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-              <div>🟢 <strong>Step 1: Submit Inquiry</strong> - Upload sketches, specify alloys & size.</div>
-              <div>🟡 <strong>Step 2: Admin CAD Estimate</strong> - Receive full CAD renderings & pricing quotes.</div>
-              <div>🔵 <strong>Step 3: Approval & Cast</strong> - Approved models go directly into physical casting.</div>
-              <div>🟣 <strong>Step 4: Insured Escort</strong> - Armored delivery directly to your storefront.</div>
+
+          <div className="workflow-card">
+            <h3 className="workflow-card-title">B2B Order Workflow</h3>
+            <div className="workflow-steps-list">
+              <div className="workflow-step-item">
+                <span className="workflow-step-num">1</span>
+                <div>
+                  <strong>Submit Requirements</strong>
+                  <p>Upload CAD models, reference photos, alloy specs, and ring size.</p>
+                </div>
+              </div>
+              <div className="workflow-step-item">
+                <span className="workflow-step-num">2</span>
+                <div>
+                  <strong>CAD Render & Quote</strong>
+                  <p>Receive 3D photorealistic renderings and wholesale stone pricing.</p>
+                </div>
+              </div>
+              <div className="workflow-step-item">
+                <span className="workflow-step-num">3</span>
+                <div>
+                  <strong>Casting & Setting</strong>
+                  <p>Master goldsmith casting, micro-pavé setting & laser hallmark inscription.</p>
+                </div>
+              </div>
+              <div className="workflow-step-item">
+                <span className="workflow-step-num">4</span>
+                <div>
+                  <strong>Armored Delivery</strong>
+                  <p>Insured courier delivery directly to your vault or storefront.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,102 +1,199 @@
-/* Base parameters shared between both themes */
+/* ═══════════════════════════════════════════════════════
+   MELEE DIAMONDS — Premium Design System Variables
+   ═══════════════════════════════════════════════════════ */
+
 :root {
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Cinzel', serif; /* Roman display typography */
-  --font-serif: 'Cormorant Garamond', Georgia, serif; /* Roman serif headings */
+  /* Typography System */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Cinzel', 'Times New Roman', serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  
+  /* Border Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
   
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-normal: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-elegant: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  
+  /* Z-index Scale */
+  --z-dropdown: 100;
+  --z-sticky: 500;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  --z-toast: 1100;
 }
 
-/* 1. Theme Natural: Classical Roman (Warm Travertine, Alabaster, Antique Gold, Charcoal) */
+/* ═══════════════════════════════════════════════════════
+   Theme Natural: Deep Charcoal Gold — Classic Luxury
+   Inspired by: Tiffany, Cartier, Harry Winston
+   ═══════════════════════════════════════════════════════ */
 .theme-natural {
-  --bg-primary: #faf9f5;      /* Warm Travertine White */
-  --bg-secondary: #ffffff;    /* Alabaster Marble */
-  --bg-tertiary: #f3f0e8;     /* Aged Roman Stone */
-  --bg-glass: rgba(250, 249, 245, 0.8);
+  /* Backgrounds — warm off-white, parchment tones */
+  --bg-primary: #f8f6f1;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f0ece3;
+  --bg-elevated: #ffffff;
+  --bg-glass: rgba(248, 246, 241, 0.88);
+  --bg-glass-strong: rgba(248, 246, 241, 0.96);
+  --bg-dark: #1a1814;
   
-  --border-color: rgba(181, 148, 91, 0.28); /* Classic gold outline */
-  --border-focus: rgba(181, 148, 91, 0.65);
+  /* Borders — subtle warm gray */
+  --border-color: #ddd8cc;
+  --border-hover: #c4b99e;
+  --border-focus: #a89872;
+  --border-subtle: #e8e4da;
   
-  --text-primary: #1c1a17;    /* Roman Charcoal */
-  --text-secondary: #59554f;  /* Soft Dark Gray */
-  --text-muted: #8c867a;
+  /* Typography — deep charcoal ink */
+  --text-primary: #1a1814;
+  --text-secondary: #5c5549;
+  --text-muted: #908779;
+  --text-inverse: #ffffff;
   
-  /* Antique Gold Accents */
-  --accent-gold: #b5945b;     /* Roman Gold */
-  --accent-gold-hover: #9e7f4b;
-  --accent-gold-dark: #7a5e32;
-  --accent-blue: #38bdf8;
-  --accent-blue-soft: rgba(56, 189, 248, 0.05);
-  --accent-gold-soft: rgba(181, 148, 91, 0.1);
+  /* Gold Accent System — rich antique gold */
+  --accent-gold: #a38548;
+  --accent-gold-hover: #8f7340;
+  --accent-gold-dark: #6b5530;
+  --accent-gold-light: #c9ad6e;
+  --accent-gold-soft: rgba(163, 133, 72, 0.08);
+  --accent-gold-glow: rgba(163, 133, 72, 0.25);
+  
+  /* Navbar — sophisticated deep slate */
+  --nav-bg: #3d4a5c;
+  --nav-text: #d4cfc6;
+  --nav-text-hover: #ffffff;
+  --nav-accent: #c9ad6e;
+  
+  /* Supporting Accents */
+  --accent-blue: #4a7ca8;
+  --accent-blue-soft: rgba(74, 124, 168, 0.06);
   
   /* Status Colors */
-  --status-pending: #d97706;
-  --status-approved: #059669;
-  --status-cancelled: #dc2626;
-  --status-process: #2563eb;
+  --status-pending: #c6880a;
+  --status-approved: #2d8659;
+  --status-cancelled: #b83232;
+  --status-process: #3a6bb5;
   
-  /* Shadows & Glow */
-  --shadow-sm: 0 2px 8px rgba(181, 148, 91, 0.05);
-  --shadow-md: 0 8px 24px rgba(181, 148, 91, 0.1);
-  --shadow-lg: 0 16px 40px rgba(181, 148, 91, 0.15);
-  --shadow-gold: 0 0 15px rgba(181, 148, 91, 0.2);
-  --blur-glass: blur(12px);
+  /* Gradient Tokens */
+  --gradient-hero: radial-gradient(ellipse 70% 50% at 75% 25%, rgba(163, 133, 72, 0.06) 0%, transparent 65%);
+  --gradient-gold: linear-gradient(135deg, #8B7340 0%, #C9A84C 35%, #D4B65A 50%, #A08040 100%);
+  --gradient-card: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  --gradient-section: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-tertiary) 50%, var(--bg-primary) 100%);
+  
+  /* Shadows — warm subtle */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --shadow-gold: 0 0 16px rgba(163, 133, 72, 0.12);
+  --shadow-card-hover: 0 10px 36px rgba(0, 0, 0, 0.08);
+  --shadow-float: 0 16px 50px rgba(0, 0, 0, 0.07), 0 3px 12px rgba(163, 133, 72, 0.06);
+  
+  /* Glass Effects */
+  --blur-glass: blur(16px);
+  --blur-strong: blur(24px);
 }
 
-/* 2. Theme Lab-Grown: Morning Glory (Sky/Ice White, Periwinkle Blue, Steel Slate) */
+/* ═══════════════════════════════════════════════════════
+   Theme Lab-Grown: Slate Navy — Modern Sophistication
+   Inspired by: De Beers, Brilliant Earth, Blue Nile
+   ═══════════════════════════════════════════════════════ */
 .theme-labgrown {
-  --bg-primary: #f4f7fc;      /* Morning Glory Light Blue-White */
-  --bg-secondary: #ffffff;    /* Pure White Alabaster */
-  --bg-tertiary: #ebf0f8;     /* Soft Ice Blue */
-  --bg-glass: rgba(244, 247, 252, 0.8);
+  /* Backgrounds — cool crisp white with blue-gray undertone */
+  --bg-primary: #f5f6f8;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #eceef2;
+  --bg-elevated: #ffffff;
+  --bg-glass: rgba(245, 246, 248, 0.88);
+  --bg-glass-strong: rgba(245, 246, 248, 0.96);
+  --bg-dark: #1c2028;
   
-  --border-color: rgba(143, 174, 214, 0.35); /* Periwinkle/Platinum outline */
-  --border-focus: rgba(143, 174, 214, 0.7);
+  /* Borders — cool gray steel */
+  --border-color: #d5d8de;
+  --border-hover: #b0b6c2;
+  --border-focus: #8891a0;
+  --border-subtle: #e3e5ea;
   
-  --text-primary: #202b36;    /* Slate Dark Blue */
-  --text-secondary: #4b5866;  /* Steel Gray */
-  --text-muted: #7f8e9e;
+  /* Typography — deep navy ink */
+  --text-primary: #1c2028;
+  --text-secondary: #4e5564;
+  --text-muted: #7c8494;
+  --text-inverse: #ffffff;
   
-  /* Morning Glory Periwinkle Accents */
-  --accent-gold: #8faed6;     /* Morning Glory Soft Blue */
-  --accent-gold-hover: #7492b8;
-  --accent-gold-dark: #587599;
-  --accent-blue: #38bdf8;
-  --accent-blue-soft: rgba(56, 189, 248, 0.05);
-  --accent-gold-soft: rgba(143, 174, 214, 0.1);
+  /* Steel Blue Accent System — refined corporate blue */
+  --accent-gold: #4e6d8c;
+  --accent-gold-hover: #3f5c78;
+  --accent-gold-dark: #2e4560;
+  --accent-gold-light: #7a9bb8;
+  --accent-gold-soft: rgba(78, 109, 140, 0.07);
+  --accent-gold-glow: rgba(78, 109, 140, 0.22);
+  
+  /* Navbar — deep navy professional */
+  --nav-bg: #2c3545;
+  --nav-text: #b8bec8;
+  --nav-text-hover: #ffffff;
+  --nav-accent: #7a9bb8;
+  
+  /* Supporting Accents */
+  --accent-blue: #3a82c4;
+  --accent-blue-soft: rgba(58, 130, 196, 0.06);
   
   /* Status Colors */
-  --status-pending: #d97706;
-  --status-approved: #059669;
-  --status-cancelled: #dc2626;
-  --status-process: #2563eb;
+  --status-pending: #c6880a;
+  --status-approved: #2d8659;
+  --status-cancelled: #b83232;
+  --status-process: #3a6bb5;
   
-  /* Shadows & Glow */
-  --shadow-sm: 0 2px 8px rgba(143, 174, 214, 0.05);
-  --shadow-md: 0 8px 24px rgba(143, 174, 214, 0.1);
-  --shadow-lg: 0 16px 40px rgba(143, 174, 214, 0.15);
-  --shadow-gold: 0 0 15px rgba(143, 174, 214, 0.2);
-  --blur-glass: blur(12px);
+  /* Gradient Tokens */
+  --gradient-hero: radial-gradient(ellipse 70% 50% at 75% 25%, rgba(78, 109, 140, 0.07) 0%, transparent 65%);
+  --gradient-gold: linear-gradient(135deg, #3d5a78 0%, #5e8aad 35%, #6e98b8 50%, #4a7494 100%);
+  --gradient-card: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  --gradient-section: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-tertiary) 50%, var(--bg-primary) 100%);
+  
+  /* Shadows — cool neutral */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --shadow-gold: 0 0 16px rgba(78, 109, 140, 0.12);
+  --shadow-card-hover: 0 10px 36px rgba(0, 0, 0, 0.08);
+  --shadow-float: 0 16px 50px rgba(0, 0, 0, 0.07), 0 3px 12px rgba(78, 109, 140, 0.06);
+  
+  /* Glass Effects */
+  --blur-glass: blur(16px);
+  --blur-strong: blur(24px);
 }
 
-/* Custom Scrollbar overrides */
+/* ═══════════════════════════════════════════════════════
+   Custom Scrollbar
+   ═══════════════════════════════════════════════════════ */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-tertiary);
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--bg-primary);
+  background: var(--border-color);
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-gold);

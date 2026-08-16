@@ -2,87 +2,131 @@ import React, { useContext, useState } from 'react';
 import { StoreContext } from '../context/StoreContext';
 
 export default function Navbar({ activePage, setActivePage }) {
-  const { cart, wishlist } = useContext(StoreContext);
+  const { cart, wishlist, diamondType, setDiamondType } = useContext(StoreContext);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const menuItems = [
+  const mainCategories = [
+    { id: 'jewelry', label: 'Fine Jewelry' },
+    { id: 'certified', label: 'Certified Diamonds' },
+    { id: 'melee', label: 'Melee Diamonds' },
+    { id: 'layouts', label: 'Matched Layouts' },
+    { id: 'custom-inquiry', label: 'Custom Inquiry' },
+  ];
+
+  const subCategories = [
     { id: 'home', label: 'Home' },
-    { id: 'jewelry', label: 'Jewelry' },
-    { id: 'melee', label: 'Melee' },
-    { id: 'layouts', label: 'Layouts' },
-    { id: 'certified', label: 'Certified' },
-    { id: 'custom-inquiry', label: 'Inquiry' },
-    { id: 'about', label: 'About' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'jewelry', label: 'All Jewelry' },
+    { id: 'certified', label: 'Loose Diamonds' },
+    { id: 'melee', label: 'Melee Parcels' },
+    { id: 'layouts', label: 'Layout Sets' },
+    { id: 'about', label: 'About Us' },
+    { id: 'contact', label: 'Contact Showroom' },
   ];
 
   const handleNavClick = (id) => {
     setActivePage(id);
     setMobileOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <header className="site-header">
-      {/* Gold Top Banner */}
+    <header className="site-header-pinned">
+      {/* Top Announcement Bar */}
       <div className="announcement-bar">
-        ✦ COMPLIMENTARY INSURED COURIER DELIVERY & BANK ESCROW ASSURANCE ✦
+        <span>✦ COMPLIMENTARY INSURED COURIER DELIVERY & BANK ESCROW ASSURANCE ✦</span>
       </div>
 
-      <div className="navbar">
-        {/* Mobile menu trigger */}
-        <button 
-          className="mobile-menu-btn" 
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle Menu"
-        >
-          {mobileOpen ? '✕' : '☰'}
-        </button>
+      {/* Main Sticky Navbar */}
+      <div className="navbar-main">
+        <div className="container navbar-container">
+          {/* Mobile menu trigger */}
+          <button 
+            className="mobile-menu-btn" 
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileOpen ? '✕' : '☰'}
+          </button>
 
-        {/* Brand Logo */}
-        <div className="logo display-title" onClick={() => handleNavClick('home')} style={{ cursor: 'pointer' }}>
-          <span style={{ color: 'var(--accent-gold)' }}>MELEE</span> DIAMONDS
-        </div>
+          {/* Brand Logo */}
+          <div className="logo display-title" onClick={() => handleNavClick('home')}>
+            <span className="logo-brand">MELEE</span>
+            <span className="logo-sub">DIAMONDS</span>
+          </div>
 
-        {/* Center navigation links */}
-        <nav>
-          <ul className={`nav-links ${mobileOpen ? 'mobile-active' : ''}`}>
-            {menuItems.map((item) => (
-              <li
-                key={item.id}
-                className={`nav-item ${activePage === item.id ? 'active' : ''}`}
-                onClick={() => handleNavClick(item.id)}
+          {/* Center Navigation Categories */}
+          <nav className="desktop-nav">
+            <ul className={`nav-links ${mobileOpen ? 'mobile-active' : ''}`}>
+              {mainCategories.map((item) => (
+                <li
+                  key={item.id}
+                  className={`nav-item ${activePage === item.id ? 'active' : ''}`}
+                  onClick={() => handleNavClick(item.id)}
+                >
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Header Action Buttons */}
+          <div className="header-actions">
+            {/* Diamond Ecosystem Switcher */}
+            <div className="mini-eco-toggle">
+              <button 
+                className={`mini-eco-btn ${diamondType === 'Natural' ? 'active' : ''}`}
+                onClick={() => setDiamondType('Natural')}
               >
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        </nav>
+                Natural
+              </button>
+              <button 
+                className={`mini-eco-btn ${diamondType === 'Lab-Grown' ? 'active' : ''}`}
+                onClick={() => setDiamondType('Lab-Grown')}
+              >
+                Lab-Grown
+              </button>
+            </div>
 
-        {/* Header Action Buttons */}
-        <div className="header-actions">
-          <button 
-            className="nav-item wishlist-btn" 
-            style={{ border: 'none', background: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
-            onClick={() => handleNavClick('wishlist')}
-          >
-            ♡ <span className="wishlist-count">({wishlist.length})</span>
-          </button>
-          
-          <button 
-            className="btn btn-secondary nav-action-btn" 
-            onClick={() => handleNavClick('cart')}
-          >
-            Cart ({cartCount})
-          </button>
+            <button 
+              className="nav-icon-btn" 
+              onClick={() => handleNavClick('wishlist')}
+              title="Saved Wishlist"
+            >
+              ♡ <span className="badge-count">{wishlist.length}</span>
+            </button>
+            
+            <button 
+              className="nav-icon-btn" 
+              onClick={() => handleNavClick('cart')}
+              title="Shopping Cart"
+            >
+              🛒 <span className="badge-count">{cartCount}</span>
+            </button>
 
-          <button 
-            className="btn btn-primary nav-action-btn" 
-            onClick={() => handleNavClick('admin')}
-          >
-            Portal
-          </button>
+            <button 
+              className="btn btn-portal-nav" 
+              onClick={() => handleNavClick('admin')}
+            >
+              PORTAL
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Sub Navigation Strip */}
+      <div className="sub-navbar">
+        <div className="container sub-nav-container">
+          {subCategories.map((sub) => (
+            <span 
+              key={sub.id} 
+              className={`sub-nav-item ${activePage === sub.id ? 'active' : ''}`}
+              onClick={() => handleNavClick(sub.id)}
+            >
+              {sub.label}
+            </span>
+          ))}
         </div>
       </div>
     </header>
