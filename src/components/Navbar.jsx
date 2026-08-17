@@ -7,13 +7,7 @@ export default function Navbar({ activePage, setActivePage }) {
 
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const mainCategories = [
-    { id: 'jewelry', label: 'Fine Jewelry' },
-    { id: 'certified', label: 'Certified Diamonds' },
-    { id: 'melee', label: 'Melee Diamonds' },
-    { id: 'layouts', label: 'Matched Layouts' },
-    { id: 'custom-inquiry', label: 'Custom Inquiry' },
-  ];
+
 
   const subCategories = [
     { id: 'home', label: 'Home' },
@@ -56,20 +50,7 @@ export default function Navbar({ activePage, setActivePage }) {
             <span className="logo-sub">DIAMONDS</span>
           </div>
 
-          {/* Center Navigation Categories */}
-          <nav className="desktop-nav">
-            <ul className={`nav-links ${mobileOpen ? 'mobile-active' : ''}`}>
-              {mainCategories.map((item) => (
-                <li
-                  key={item.id}
-                  className={`nav-item ${activePage === item.id ? 'active' : ''}`}
-                  onClick={() => handleNavClick(item.id)}
-                >
-                  {item.label}
-                </li>
-              ))}
-            </ul>
-          </nav>
+
 
           {/* Header Action Buttons */}
           <div className="header-actions">
