@@ -276,66 +276,98 @@ function MainLayout() {
 }
 
 function PortalLockScreen() {
-  const { loginAdmin } = useContext(StoreContext);
-  const [username, setUsername] = useState('');
+  const { loginAdmin, adminPassword } = useContext(StoreContext);
+  const [username, setUsername] = useState('MELEE');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError('');
     const success = loginAdmin(username, password);
     if (!success) {
-      setError('Invalid security signature. Access rejected.');
+      setError('Invalid ID or Password signature. Access rejected.');
     }
   };
 
+  const handleFillDemo = () => {
+    setUsername('MELEE');
+    setPassword(adminPassword || 'admin');
+    setError('');
+  };
+
   return (
-    <div className="container section animate-fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '500px' }}>
-      <div className="card" style={{ maxWidth: '420px', width: '100%', padding: '40px', border: '1px solid var(--border-color)', borderRadius: '0', background: 'var(--bg-secondary)', boxShadow: 'var(--shadow-md)', textAlign: 'center' }}>
-        <div style={{ fontSize: '3rem', color: 'var(--accent-gold-dark)', marginBottom: '16px' }}>🔒</div>
-        <h2 className="display-title" style={{ fontSize: '1.1rem', marginBottom: '8px' }}>Security Gateway</h2>
-        <p style={{ fontStyle: 'italic', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '24px', fontFamily: 'var(--font-serif)' }}>
-          Restricted administrative coordinates. Identify profile to decrypt vault.
+    <div className="container section animate-fade-in" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '600px', padding: '60px 24px' }}>
+      <div className="card" style={{ maxWidth: '440px', width: '100%', padding: '44px 36px', border: '1px solid var(--border-color)', borderRadius: '12px', background: 'var(--bg-secondary)', boxShadow: 'var(--shadow-lg)', textAlign: 'center' }}>
+        
+        {/* Brand Icon Header */}
+        <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'var(--accent-gold-soft)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: '1.8rem', border: '1px solid var(--accent-gold)' }}>
+          🔐
+        </div>
+
+        <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.65rem', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--accent-gold)', fontWeight: '700', display: 'block', marginBottom: '6px' }}>
+          Melee Diamonds Internal Portal
+        </span>
+        <h2 className="display-title" style={{ fontSize: '1.4rem', marginBottom: '10px', color: 'var(--text-primary)' }}>Admin Security Access</h2>
+        <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '28px', lineHeight: '1.6' }}>
+          Restricted administrative gateway. Enter your authorization credentials to manage inquiries and inventory.
         </p>
 
         {error && (
-          <div style={{ color: 'var(--status-cancelled)', background: 'rgba(220, 38, 38, 0.05)', border: '1px solid rgba(220, 38, 38, 0.2)', padding: '10px', fontSize: '0.8rem', marginBottom: '20px', textAlign: 'left' }}>
-            ⚠ {error}
+          <div style={{ color: 'var(--status-cancelled)', background: 'rgba(220, 38, 38, 0.08)', border: '1px solid rgba(220, 38, 38, 0.2)', padding: '12px 14px', borderRadius: '6px', fontSize: '0.82rem', marginBottom: '20px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span>⚠</span>
+            <span>{error}</span>
           </div>
         )}
 
         <form onSubmit={handleLogin} style={{ textAlign: 'left' }}>
-          <div className="form-group" style={{ marginBottom: '16px' }}>
-            <label className="form-label" style={{ fontSize: '0.75rem' }}>Security Profile ID</label>
+          <div className="form-group" style={{ marginBottom: '18px' }}>
+            <label className="form-label" style={{ fontSize: '0.72rem', letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '700' }}>
+              Security Profile ID (Username)
+            </label>
             <input 
               type="text" 
               required
               placeholder="e.g. MELEE" 
               className="form-control"
+              style={{ padding: '12px 14px', fontSize: '0.9rem', borderRadius: '6px' }}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: '20px' }}>
-            <label className="form-label" style={{ fontSize: '0.75rem' }}>Passcode Signature</label>
+          <div className="form-group" style={{ marginBottom: '24px' }}>
+            <label className="form-label" style={{ fontSize: '0.72rem', letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '700' }}>
+              Passcode Signature (Password)
+            </label>
             <input 
               type="password" 
               required
               placeholder="••••••••" 
               className="form-control"
+              style={{ padding: '12px 14px', fontSize: '0.9rem', borderRadius: '6px' }}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '12px', fontWeight: '700' }}>
-            Verify Credentials
+          <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '14px', fontSize: '0.8rem', letterSpacing: '1.5px', fontWeight: '700', borderRadius: '6px', cursor: 'pointer' }}>
+            Login to Admin Dashboard
           </button>
         </form>
-        
-        <div style={{ marginTop: '20px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-          Credentials: <strong>MELEE</strong> / <strong>admin</strong> (or your new password)
+
+        <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px dashed var(--border-color)', display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            Default Credentials: ID: <strong>MELEE</strong> | Password: <strong>admin</strong>
+          </span>
+          <button 
+            type="button" 
+            onClick={handleFillDemo}
+            className="btn btn-secondary"
+            style={{ fontSize: '0.72rem', padding: '6px 16px', borderRadius: '4px', letterSpacing: '1px' }}
+          >
+            ⚡ Auto-Fill Demo Credentials
+          </button>
         </div>
       </div>
     </div>

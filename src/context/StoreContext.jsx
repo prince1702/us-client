@@ -2,19 +2,28 @@ import React, { createContext, useState, useEffect } from 'react';
 
 export const StoreContext = createContext();
 
-// Mock high-quality image placeholders using elegant gradients
-const mockImg = (text) => `https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80`;
-const earringImg = () => `https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80`;
-const braceletImg = () => `https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80`;
-const pendantImg = () => `https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=600&q=80`;
-const looseDiamondImg = () => `https://images.unsplash.com/photo-1588444839799-eb0c99e986fc?auto=format&fit=crop&w=600&q=80`;
-
 export const StoreProvider = ({ children }) => {
-  // Global States
-  const [diamondType, setDiamondType] = useState('Lab-Grown'); // 'Lab-Grown' or 'Natural'
-  const [cart, setCart] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
-  const [inquiries, setInquiries] = useState([
+  // Global States with LocalStorage Persistence
+  const [diamondType, setDiamondType] = useState('Lab-Grown');
+  const [cart, setCart] = useState(() => {
+    try {
+      const saved = localStorage.getItem('melee_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const [wishlist, setWishlist] = useState(() => {
+    try {
+      const saved = localStorage.getItem('melee_wishlist');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
+
+  const defaultInquiries = [
     {
       id: 'inq-1',
       inquiryNumber: 'INQ-2026-000001',
@@ -57,22 +66,56 @@ export const StoreProvider = ({ children }) => {
       createdAt: '2026-07-10T08:15:00Z',
       images: []
     }
-  ]);
+  ];
+
+  const [inquiries, setInquiries] = useState(() => {
+    try {
+      const saved = localStorage.getItem('melee_inquiries');
+      return saved ? JSON.parse(saved) : defaultInquiries;
+    } catch (e) {
+      return defaultInquiries;
+    }
+  });
+
   const [attachedExcel, setAttachedExcel] = useState(null);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
+    return localStorage.getItem('melee_admin_logged_in') === 'true';
+  });
+
   const [adminPassword, setAdminPassword] = useState(() => {
     return localStorage.getItem('auradiamond_admin_pass') || 'admin';
   });
 
+  // Sync to LocalStorage on state changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('melee_cart', JSON.stringify(cart));
+    } catch (e) {}
+  }, [cart]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('melee_wishlist', JSON.stringify(wishlist));
+    } catch (e) {}
+  }, [wishlist]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('melee_inquiries', JSON.stringify(inquiries));
+    } catch (e) {}
+  }, [inquiries]);
+
   const loginAdmin = (username, password) => {
-    const normalizedUser = username.trim().toUpperCase();
-    const normalizedPass = password.trim();
+    const normalizedUser = (username || '').trim().toUpperCase();
+    const normalizedPass = (password || '').trim();
 
     const isUsernameValid = normalizedUser === 'MELEE' || normalizedUser === 'ADMIN';
-    const isPasswordValid = normalizedPass === adminPassword || normalizedPass === 'admin';
+    const isPasswordValid = normalizedPass === adminPassword || (adminPassword === 'admin' && normalizedPass === 'admin');
 
     if (isUsernameValid && isPasswordValid) {
       setIsAdminLoggedIn(true);
+      localStorage.setItem('melee_admin_logged_in', 'true');
       return true;
     }
     return false;
@@ -80,7 +123,17 @@ export const StoreProvider = ({ children }) => {
 
   const logoutAdmin = () => {
     setIsAdminLoggedIn(false);
+    localStorage.removeItem('melee_admin_logged_in');
   };
+
+// Mock high-quality image placeholders using elegant gradients
+const mockImg = (text) => `https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80`;
+const earringImg = () => `https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80`;
+const braceletImg = () => `https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80`;
+const pendantImg = () => `https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=600&q=80`;
+const looseDiamondImg = () => `https://images.unsplash.com/photo-1588444839799-eb0c99e986fc?auto=format&fit=crop&w=600&q=80`;
+
+
 
   const changeAdminPassword = (oldPassword, newPassword) => {
     if (oldPassword === adminPassword) {
